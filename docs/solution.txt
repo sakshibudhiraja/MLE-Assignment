@@ -1,0 +1,31 @@
+**Implementation Logic and Testing Documentation**
+
+## **1. Overview**
+This document outlines the implementation logic of the **Machine Learning Engineer Assignment** project, including data preprocessing, model training, and API integration. Additionally, it covers unit tests for ensuring reliability.
+
+## **2. Implementation Logic**
+### **2.1 Data Preprocessing (`preprocess.py`)**
+- Loads data from `MLE-Assignment.csv`.
+- Handles missing values using `dropna()`.
+- Removes non-numeric columns.
+- Normalizes feature values using `StandardScaler`.
+- Saves the scaler for later use.
+
+### **2.2 Model Training (`train.py`)**
+- Loads and preprocesses data.
+- Splits data into training and testing sets (80%-20%).
+- Defines a **Neural Network Model** using TensorFlow/Keras with:
+  - Input layer (size = number of features)
+  - 2 hidden layers (64 and 32 neurons, `ReLU` activation)
+  - Output layer (single neuron for regression task)
+- Uses **Mean Squared Error (MSE)** as the loss function.
+- Trains the model for **100 epochs** with a batch size of **16**.
+- Saves the trained model (`model.keras`).
+
+### **2.3 API Integration (`predict.py`)**
+- Loads the trained model and scaler.
+- Runs a Flask API with a `/predict` endpoint.
+- Accepts JSON input with 448 features.
+- Scales input data using the saved `StandardScaler`.
+- Uses the trained model to predict **DON Concentration**.
+- Returns the prediction as JSON.
